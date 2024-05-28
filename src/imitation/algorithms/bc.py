@@ -492,6 +492,7 @@ class BC(algo_base.DemonstrationAlgorithm):
                 types.maybe_unwrap_dictobs(batch["obs"]),
             )
             acts = util.safe_to_tensor(batch["acts"], device=self.policy.device)
+            acts = acts.to(self.policy.device)
             training_metrics = self.loss_calculator(self.policy, obs_tensor, acts)
 
             # Renormalise the loss to be averaged over the whole
